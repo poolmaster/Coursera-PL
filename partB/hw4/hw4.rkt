@@ -25,7 +25,6 @@
   (if (<= n 0)
   null
   (cons (car (s)) (stream-for-n-steps (cdr (s)) (- n 1)))))
-
  
 ;; problem 5
 (define funny-number-stream
