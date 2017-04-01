@@ -8,6 +8,7 @@ Programming assignments and projects of Programming Language course on Coursera
   * Type inference, module systems
   
 - [ ] **Part B: Racket**
-  * Racket basics: parentheses, dynamic typing, mutation, thunks, delay/force, streams, memoization and Macros
+  * parentheses, dynamic typing, mutation, thunks, delay/force, streams, memoization, Macros and DrRacket
+  * struct and using struct to implement a new PL: AST interpreter
   
 - [ ] **Part C: Ruby**
