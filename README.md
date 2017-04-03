@@ -7,8 +7,9 @@ Programming assignments and projects of Programming Language course on Coursera
   * First-class/high-order/anonymous functions, closures, map/filter/fold, currying and partial application
   * Type inference, module systems
   
-- [ ] **Part B: Racket**
+- [x] **Part B: Racket**
   * parentheses, dynamic typing, mutation, thunks, delay/force, streams, memoization, Macros and DrRacket
   * struct and using struct to implement a new PL: AST interpreter
+  * static typing VS dynamic typing
   
 - [ ] **Part C: Ruby**
