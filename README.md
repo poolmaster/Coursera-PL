@@ -13,3 +13,5 @@ Programming assignments and projects of Programming Language course on Coursera
   * static VS typing, eval and quote
   
 - [ ] **Part C: Ruby**
+  * Class/Objects, visibility, duck typing, Blocks, Procs, Array/Hash/Range, Subclass, Overriding/Dynamic Dispatch: enhance a Tetris Game
+  * 
