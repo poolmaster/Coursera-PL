@@ -18,6 +18,8 @@ FOUR = 4.0
 FIVE = 5.0
 SIX = 6.0
 SEVEN = 7.0
+EIGHT = 8.0
+NINE = 9.0
 TEN = 10.0
 
 #Point Tests
@@ -43,6 +45,34 @@ a3 = a.intersect(Point.new(FOUR,FIVE))
 if not (a3.is_a? NoPoints)
 	puts "Point intersect not working properly"
 end
+a4 = a.intersect(Line.new(ONE,TWO))
+if not (a4.x == THREE and a4.y == FIVE)
+	puts "Point intersect not working properlya: a4"
+end
+a5 = a.intersect(Line.new(FOUR,FIVE))
+if not (a5.is_a? NoPoints)
+	puts "Point intersect not working properly: a5"
+end
+a6 = a.intersect(VerticalLine.new(THREE))
+if not (a6.x == THREE and a6.y == FIVE)
+	puts "Point intersect not working properlya: a6"
+end
+a7 = a.intersect(VerticalLine.new(FOUR))
+if not (a7.is_a? NoPoints)
+	puts "Point intersect not working properly: a7"
+end
+a8 = a.intersect(LineSegment.new(FOUR, SIX, SIX, EIGHT))
+if not (a8.is_a? NoPoints)
+	puts "Point intersect not working properly: a8"
+end
+a9 = a.intersect(LineSegment.new(TWO, FOUR, FIVE, SEVEN))
+if not (a9.x == THREE and a9.y == FIVE)
+	puts "Point intersect not working properlya: a9"
+end
+a10 = a.intersect(LineSegment.new(ONE, FOUR, FIVE, SEVEN))
+if not (a10.is_a? NoPoints)
+	puts "Point intersect not working properlya: a10"
+end
 
 #Line Tests
 b = Line.new(THREE,FIVE)
@@ -55,7 +85,6 @@ end
 if not (b.preprocess_prog == b)
 	puts "Line preprocess_prog should return self"
 end
-
 b1 = b.shift(THREE,FIVE) 
 if not (b1.m == THREE and b1.b == ONE)
 	puts "Line shift not working properly"
@@ -68,6 +97,22 @@ end
 b3 = b.intersect(Line.new(THREE,FOUR))
 if not ((b3.is_a? NoPoints))
 	puts "Line intersect not working properly"
+end
+b4 = b.intersect(Line.new(TWO,SIX))
+if not (b4.x == ONE and b4.y == EIGHT)
+	puts "Line intersect not working properly: b4"
+end
+b5 = b.intersect(Point.new(ONE, EIGHT))
+if not (b5.x == ONE and b5.y == EIGHT)
+	puts "Line intersect not working properly: b5"
+end
+b6 = b.intersect(VerticalLine.new(ONE))
+if not (b6.x == ONE and b6.y == EIGHT)
+	puts "Line intersect not working properly: b6"
+end
+b7 = b.intersect(LineSegment.new(0.333333333, SIX, ONE, EIGHT))
+if not (b7.y1 == SIX and b7.x2 == ONE and b7.y2 == EIGHT)
+	puts "Line intersect not working properly: b7"
 end
 
 #VerticalLine Tests
@@ -93,6 +138,18 @@ end
 c3 = c.intersect(VerticalLine.new(FOUR))
 if not ((c3.is_a? NoPoints))
 	puts "VerticalLine intersect not working properly"
+end
+c4 = c.intersect(LineSegment.new(THREE, -ONE, THREE, FIVE))
+if not (c4.x1 == THREE and c4.y1 == -ONE and c4.x2 == THREE and c4.y2 == FIVE)
+	puts "VerticalLine intersect not working properly: c4"
+end
+c5 = c.intersect(LineSegment.new(THREE, -ONE, FOUR, FIVE))
+if not (c5.x == THREE and c5.y == -ONE)
+	puts "VerticalLine intersect not working properly: c5"
+end
+c6 = c.intersect(LineSegment.new(FOUR, -ONE, FIVE, FIVE))
+if not ((c6.is_a? NoPoints))
+	puts "VerticalLine intersect not working properly: c6"
 end
 
 #LineSegment Tests
@@ -125,6 +182,36 @@ end
 d5 = d.intersect(LineSegment.new(TWO,THREE,FOUR,FIVE))
 if not ((d5.is_a? NoPoints))
 	puts "LineSegment intersect not working properly"
+end
+
+d6 = (LineSegment.new(THREE, -ONE, THREE, FIVE)).intersect(c)
+if not (d6.x1 == THREE and d6.y1 == -ONE and d6.x2 == THREE and d6.y2 == FIVE)
+	puts "VerticalLine intersect not working properly: d6"
+end
+d7 = (LineSegment.new(THREE, -ONE, FOUR, FIVE)).intersect(c)
+if not (d7.x == THREE and d7.y == -ONE)
+	puts "VerticalLine intersect not working properly: d7"
+end
+d8 = (LineSegment.new(FOUR, -ONE, FIVE, FIVE)).intersect(c)
+if not ((d8.is_a? NoPoints))
+	puts "VerticalLine intersect not working properly: d8"
+end
+d9 = b.intersect(LineSegment.new(0.333333333, SIX, ONE, EIGHT))
+if not (d9.y1 == SIX and d9.x2 == ONE and d9.y2 == EIGHT)
+	puts "Line intersect not working properly: d9"
+end
+
+d10 = (LineSegment.new(FOUR, SIX, SIX, EIGHT)).intersect(a)
+if not (d10.is_a? NoPoints)
+	puts "Point intersect not working properly: d10"
+end
+d11 = (LineSegment.new(TWO, FOUR, FIVE, SEVEN)).intersect(a)
+if not (d11.x == THREE and d11.y == FIVE)
+	puts "Point intersect not working properlya: d11"
+end
+d12 = (LineSegment.new(ONE, FOUR, FIVE, SEVEN)).intersect(a)
+if not (d12.is_a? NoPoints)
+	puts "Point intersect not working properlya: d12"
 end
 
 #Intersect Tests
@@ -162,7 +249,7 @@ end
 
 
 #Shift Tests
-s = Shift.new(THREE,FIVE,LineSegment.new(-ONE,-TWO,THREE,FOUR))
+s = Shift.new(THREE,FIVE,LineSegment.new(THREE,FOUR, -ONE,-TWO))
 s1 = s.preprocess_prog.eval_prog([])
 if not (s1.x1 == TWO and s1.y1 == THREE and s1.x2 == SIX and s1.y2 == 9)
 	puts "Shift should shift e by dx and dy"
